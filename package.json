@@ -4,7 +4,8 @@
   "description": "TypeScript, SCSS実装用",
   "main": "index.ts",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config.dev.js",
+    "typecheck": "tsc -w",
+    "dev": "yarn check-types & webpack-dev-server --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js"
   },
   "repository": {
