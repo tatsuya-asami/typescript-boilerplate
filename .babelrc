@@ -1,3 +1,14 @@
 {
-  "presets": ["@babel/preset-typescript"]
+  "presets": [
+    [
+      "@babel/preset-typescript",
+      {
+        "targets": {
+          "chrome": "58",
+          "safari": "9",
+          "edge": "70"
+        }
+      }
+    ]
+  ]
 }

@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "typecheck": "tsc -w",
-    "dev": "yarn check-types & webpack-dev-server --config webpack.config.dev.js",
+    "dev": "yarn typecheck & webpack-dev-server --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js"
   },
   "repository": {
