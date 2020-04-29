@@ -1,0 +1,17 @@
+@use '@scss/colors' as colors;
+
+h2 {
+  color: colors.$shokkingPink;
+  transition: all 1s;
+
+  &:hover {
+    color: yellow;
+    transform: translateX(50px);
+  }
+}
+
+.bg {
+  height: 50px;
+  color: 'red';
+  background-image: url('~@assets/images/sample-jpeg.jpeg');
+}
