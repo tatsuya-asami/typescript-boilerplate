@@ -1,0 +1,9 @@
+h2 {
+  color: red;
+  transition: all 1s;
+
+  &:hover {
+    transform: translateX(50px);
+    color: yellow;
+  }
+}
