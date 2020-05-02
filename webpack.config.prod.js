@@ -40,6 +40,22 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.(png|svg|jpe?g|gif|ttf|woff2?)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "assets",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.html$/,
+        use: ["html-loader"],
+      },
     ],
   },
   resolve: {

@@ -36,6 +36,22 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.(png|svg|jpe?g|gif|ttf|woff2?)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "assets",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.html$/,
+        use: ["html-loader"],
+      },
     ],
   },
   output: {
@@ -44,9 +60,11 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
+    // どのブラウザを自動で開くか指定出来る。falseにすると自動起動をオフに出来る。
+    // open: "Google Chrome",
+    open: false,
     host: "localhost",
     port: 8080,
-    open: true,
   },
   resolve: {
     extensions: [".ts", ".js"],
