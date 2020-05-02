@@ -23,6 +23,12 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    host: "localhost",
+    port: 8080,
+    open: true,
+  },
   resolve: {
     extensions: [".ts", ".js"],
   },
