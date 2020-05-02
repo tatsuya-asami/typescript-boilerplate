@@ -5,8 +5,10 @@
   "main": "index.ts",
   "scripts": {
     "typecheck": "tsc -w",
-    "dev": "yarn typecheck & webpack-dev-server --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.prod.js"
+    "dev": "yarn typecheck & webpack-dev-server --env.file=development --config webpack.config.dev.js",
+    "build:development": "webpack --env.file=development --config webpack.config.prod.js",
+    "build:staging": "webpack --env.file=staging --config webpack.config.prod.js",
+    "build:production": "webpack --env.file=production --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "browserlist": "^1.0.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
+    "dotenv-webpack": "^1.7.0",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.2.1",
