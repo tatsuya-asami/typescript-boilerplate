@@ -64,6 +64,7 @@ module.exports = {
     // open: "Google Chrome",
     open: false,
     host: "localhost",
+    compress: true,
     port: 8080,
   },
   resolve: {
