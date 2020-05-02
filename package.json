@@ -5,10 +5,10 @@
   "main": "index.ts",
   "scripts": {
     "typecheck": "tsc -w",
-    "dev": "yarn typecheck & webpack-dev-server --env.file=development --config webpack.config.dev.js",
-    "build:development": "webpack --env.file=development --config webpack.config.prod.js",
-    "build:staging": "webpack --env.file=staging --config webpack.config.prod.js",
-    "build:production": "webpack --env.file=production --config webpack.config.prod.js"
+    "dev": "yarn typecheck & webpack-dev-server --env.file=development --config webpack.dev.js",
+    "build:development": "webpack --env.file=development --config webpack.prod.js",
+    "build:staging": "webpack --env.file=staging --config webpack.prod.js",
+    "build:production": "webpack --env.file=production --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
     "typescript": "^3.8.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
   }
 }
