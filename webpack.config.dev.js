@@ -33,7 +33,6 @@ module.exports = (env) => {
           test: /\.s[ac]ss$/i,
           use: [
             // ここの順番は重要。下から順番に実行される
-            // ここの順番は重要。下から順番に実行される
             // cssファイルを作成する
             MiniCssExtractPlugin.loader,
             // Translates CSS into CommonJS
