@@ -5,8 +5,10 @@ const Dotenv = require("dotenv-webpack");
 module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
   return {
     entry: {
+      // htmlが増える毎にここに追記
+      // htmlページ名:そのhtmlの親となるtsファイル
       index: "./src/pages/index.ts",
-      sample: "./src/pages/sample/index.ts",
+      "sample/index": "./src/pages/sample/index.ts",
     },
     plugins: [
       new MiniCssExtractPlugin({

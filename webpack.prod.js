@@ -8,6 +8,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const outputFile = "[name].[chunkhash]";
 const assetFile = "[name].[contenthash]";
+// 静的ファイルを保存する場所によって変える。インフラ担当者と要相談。
 const assetPath = "../";
 
 module.exports = (env) => {
@@ -15,17 +16,18 @@ module.exports = (env) => {
   // 指定されていない場合は.env.productionを使用する
   const envFilePath = env ? `./env/.env.${env.file}` : "./env/.env.production";
 
-  return webpackMerge(
-    commonConfig({ outputFile, assetFile, envFilePath, assetPath }),
-    {
-      mode: "production",
-      plugins: [
+  // webpack.common.jsのentryで追加したhtmlファイルを動的に生成する。
+  const createHtmlPlugins = (entry) => {
+    // 最初にdistを空にする
+    const htmpPlugins = [new CleanWebpackPlugin()];
+    Object.keys(entry).forEach((key) => {
+      htmpPlugins.push(
         new HtmlWebpackPlugin({
-          template: path.resolve(__dirname, "src/pages/index.html"),
-          filename: "index.html",
+          template: path.resolve(__dirname, `./src/pages/${key}.html`),
+          // 出力されるファイル名
+          filename: `${key}.html`,
           // headにjsファイルを入れたい場合はheadを指定
           inject: "body",
-          // optimizationを指定するとproductionモードのデフォルト設定が解除されるので、ここで指定
           minify: {
             collapseWhitespace: true,
             removeComments: true,
@@ -34,24 +36,20 @@ module.exports = (env) => {
             removeStyleLinkTypeAttributes: true,
             useShortDoctype: true,
           },
-          chunks: ["index"],
-        }),
-        // new HtmlWebpackPlugin({
-        //   template: path.resolve(__dirname, "src/pages/sample.html"),
-        //   filename: "pages/sample.html",
-        //   inject: "body",
-        //   minify: {
-        //     collapseWhitespace: true,
-        //     removeComments: true,
-        //     removeRedundantAttributes: true,
-        //     removeScriptTypeAttributes: true,
-        //     removeStyleLinkTypeAttributes: true,
-        //     useShortDoctype: true,
-        //   },
-        //   chunks: ["sample"],
-        // }),
-        new CleanWebpackPlugin(),
-      ],
+          // 読み込むjsファイルを指定
+          chunks: [key],
+        })
+      );
+    });
+    return htmpPlugins;
+  };
+  return webpackMerge(
+    commonConfig({ outputFile, assetFile, envFilePath, assetPath }),
+    {
+      mode: "production",
+      plugins: createHtmlPlugins(
+        commonConfig({ outputFile, assetFile, envFilePath, assetPath }).entry
+      ),
       optimization: {
         minimizer: [
           // javascriptの最適化

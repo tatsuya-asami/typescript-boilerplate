@@ -12,31 +12,33 @@ module.exports = (env) => {
   // 指定されていない場合は.env.developmentを使用する
   const envFilePath = env ? `./env/.env.${env.file}` : "./env/.env.development";
 
+  // webpack.common.jsのentryで追加したhtmlファイルを動的に生成する。
+  const createHtmlPlugins = (entry) => {
+    const htmpPlugins = [];
+    Object.keys(entry).forEach((key) => {
+      htmpPlugins.push(
+        new HtmlWebpackPlugin({
+          template: path.resolve(__dirname, `./src/pages/${key}.html`),
+          // 出力されるファイル名
+          filename: `${key}.html`,
+          // headにjsファイルを入れたい場合はheadを指定
+          inject: "body",
+          // 読み込むjsファイルを指定
+          chunks: [key],
+        })
+      );
+    });
+    return htmpPlugins;
+  };
+
   return webpackMerge(
     commonConfig({ outputFile, assetFile, envFilePath, assetPath }),
     {
       mode: "development",
       devtool: "source-map",
-      plugins: [
-        new HtmlWebpackPlugin({
-          template: path.resolve(__dirname, "src/pages/index.html"),
-          // 出力されるファイル名
-          filename: "index.html",
-          // headにjsファイルを入れたい場合はheadを指定
-          inject: "body",
-          // 読み込むjsファイルを指定
-          chunks: ["index"],
-        }),
-        new HtmlWebpackPlugin({
-          template: path.resolve(__dirname, "src/pages/sample/index.html"),
-          // 出力されるファイル名
-          filename: "pages/index.html",
-          // headにjsファイルを入れたい場合はheadを指定
-          inject: "body",
-          // 読み込むjsファイルを指定
-          chunks: ["sample"],
-        }),
-      ],
+      plugins: createHtmlPlugins(
+        commonConfig({ outputFile, assetFile, envFilePath, assetPath }).entry
+      ),
       devServer: {
         contentBase: path.join(__dirname, "dist"),
         // どのブラウザを自動で立ち上げるか。trueで標準のブラウザ。デフォルトでは立ち上がらない。
