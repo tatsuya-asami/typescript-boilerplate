@@ -9,7 +9,7 @@
     "json-server": "npx json-server --watch mockDB.json",
     "webpack-dev": "npx webpack --evn.file=development --config webpack.dev.js",
     "webpack-server": "npx webpack-dev-server --env.file=development --config webpack.dev.js",
-    "dev": "run-p json-server webpack-dev webpack-server",
+    "dev": "npm run json-server & npm run webpack-dev & npm run webpack-server",
     "build:development": "npx webpack --env.file=development --config webpack.prod.js",
     "build:staging": "npx webpack --env.file=staging --config webpack.prod.js",
     "build:production": "npx webpack --env.file=production --config webpack.prod.js"
@@ -47,7 +47,6 @@
     "html-webpack-plugin": "^4.2.1",
     "json-server": "^0.16.1",
     "mini-css-extract-plugin": "^0.9.0",
-    "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.0.5",
