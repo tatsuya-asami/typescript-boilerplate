@@ -1,5 +1,7 @@
+@use '@scss/colors' as colors;
+
 h2 {
-  color: red;
+  color: colors.$shokkingPink;
   transition: all 1s;
 
   &:hover {
@@ -11,5 +13,5 @@ h2 {
 .bg {
   color: "red";
   height: 50px;
-  background-image: url("./assets/img/sample-jpeg.jpeg");
+  background-image: url("~@assets/img/sample-svg.svg");
 }

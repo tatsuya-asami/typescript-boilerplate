@@ -2,18 +2,20 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 
-module.exports = ({ outputFile, assetFile, envFilePath }) => {
+module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
   return {
-    // mode: "production",
-    entry: "./src/ts/index.ts",
+    entry: {
+      index: "./src/pages/index.ts",
+      sample: "./src/pages/sample/index.ts",
+    },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: `${outputFile}.css`,
+        filename: `./css/${outputFile}.css`,
       }),
       new Dotenv({ path: envFilePath }),
     ],
     output: {
-      filename: `${outputFile}.js`,
+      filename: `./js/${outputFile}.js`,
       path: path.resolve(__dirname, "dist"),
     },
     module: {
@@ -44,7 +46,11 @@ module.exports = ({ outputFile, assetFile, envFilePath }) => {
               loader: "file-loader",
               options: {
                 name: `${assetFile}.[ext]`,
-                outputPath: "assets",
+                // name: `[name].[ext]`,
+                // name: "[name].[contentHash].[ext]",
+                outputPath: "/assets/img",
+                // ファイルのパスを指定する。
+                publicPath: `${assetPath}assets/img`,
               },
             },
           ],
@@ -56,6 +62,12 @@ module.exports = ({ outputFile, assetFile, envFilePath }) => {
       ],
     },
     resolve: {
+      // 絶対パスでインポートできるようにする。
+      alias: {
+        "@ts": path.resolve(__dirname, "src/ts"),
+        "@scss": path.resolve(__dirname, "src/scss"),
+        "@assets": path.resolve(__dirname, "src/assets"),
+      },
       extensions: [".ts", ".js"],
     },
   };
