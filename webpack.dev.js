@@ -35,7 +35,7 @@ module.exports = (env) => {
     commonConfig({ outputFile, assetFile, envFilePath, assetPath }),
     {
       mode: "development",
-      devtool: "source-map",
+      devtool: "inline-source-map",
       plugins: createHtmlPlugins(
         commonConfig({ outputFile, assetFile, envFilePath, assetPath }).entry
       ),

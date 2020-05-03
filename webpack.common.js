@@ -2,6 +2,7 @@ const path = require("path");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
   return {
@@ -12,14 +13,16 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
       "sample/index": "./src/pages/sample/index.ts",
     },
     plugins: [
+      // 型チェック
+      new ForkTsCheckerWebpackPlugin(),
       // cssをcssファイルとして抽出する
       new MiniCssExtractPlugin({
         filename: `./css/${outputFile}.css`,
       }),
       // .envファイルを使えるようにする
       new Dotenv({ path: envFilePath }),
-      // 型チェック
-      new ForkTsCheckerWebpackPlugin(),
+      // distディレクトリを空にする
+      new CleanWebpackPlugin(),
     ],
     output: {
       filename: `./js/${outputFile}.js`,
