@@ -1,4 +1,5 @@
 export const testString = "testString";
-export const testAlert = (value: any) => {
+
+export const testAlert = (value: string) => {
   alert(value);
 };

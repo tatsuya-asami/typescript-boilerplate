@@ -1,4 +1,5 @@
 const path = require("path");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 
@@ -11,10 +12,14 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
       "sample/index": "./src/pages/sample/index.ts",
     },
     plugins: [
+      // cssをcssファイルとして抽出する
       new MiniCssExtractPlugin({
         filename: `./css/${outputFile}.css`,
       }),
+      // .envファイルを使えるようにする
       new Dotenv({ path: envFilePath }),
+      // 型チェック
+      new ForkTsCheckerWebpackPlugin(),
     ],
     output: {
       filename: `./js/${outputFile}.js`,
@@ -48,8 +53,6 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
               loader: "file-loader",
               options: {
                 name: `${assetFile}.[ext]`,
-                // name: `[name].[ext]`,
-                // name: "[name].[contentHash].[ext]",
                 outputPath: "/assets/img",
                 // ファイルのパスを指定する。
                 publicPath: `${assetPath}assets/img`,
