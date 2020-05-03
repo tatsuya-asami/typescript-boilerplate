@@ -31,7 +31,13 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
     module: {
       rules: [
         {
-          test: /\.ts/,
+          enforce: 'pre',
+          test: /\.(ts|js)$/,
+          use: 'eslint-loader',
+          exclude: /node_modules/,
+        },
+        {
+          test: /\.(ts|js)$/,
           use: 'babel-loader',
           exclude: /node_modules/,
         },
