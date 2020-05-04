@@ -5,13 +5,13 @@ h2 {
   transition: all 1s;
 
   &:hover {
-    transform: translateX(50px);
     color: yellow;
+    transform: translateX(50px);
   }
 }
 
 .bg {
-  color: 'red';
   height: 50px;
+  color: 'red';
   background-image: url('/assets/img/sample-svg.svg');
 }
