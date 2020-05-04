@@ -1,6 +1,7 @@
 {
   "name": "typescript-boilerplate",
   "version": "1.0.0",
+  "private": true,
   "description": "TypeScript, SCSS実装用",
   "main": "index.ts",
   "scripts": {
@@ -20,12 +21,6 @@
     "type": "git",
     "url": "git+https://github.com/astatsuya/TypeScript-boilerplate.git"
   },
-  "author": "astatsuya",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/astatsuya/TypeScript-boilerplate/issues"
-  },
-  "homepage": "https://github.com/astatsuya/TypeScript-boilerplate#readme",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
