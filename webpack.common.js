@@ -2,7 +2,6 @@ const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
   return {
@@ -21,8 +20,6 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
       }),
       // .envファイルを使えるようにする
       new Dotenv({ path: envFilePath }),
-      // distディレクトリを空にする
-      new CleanWebpackPlugin(),
     ],
     output: {
       filename: `./js/${outputFile}.js`,
@@ -77,9 +74,9 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
               options: {
                 // limit: 51200,
                 name: `${assetFile}.[ext]`,
-                outputPath: 'assets/img',
-                // 画像保存先が違う場合はパスを指定する。
-                // publicPath: `${assetPath}assets/img`,
+                outputPath: 'assets/img/',
+                // 画像保存先がによってパスを変更する。
+                publicPath: `${assetPath}assets/img/`,
               },
             },
           ],
