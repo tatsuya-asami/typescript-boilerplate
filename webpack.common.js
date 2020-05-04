@@ -61,10 +61,11 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
             {
               loader: 'file-loader',
               options: {
+                // limit: 51200,
                 name: `${assetFile}.[ext]`,
-                outputPath: '/assets/img',
-                // ファイルのパスを指定する。
-                publicPath: `${assetPath}assets/img`,
+                outputPath: 'assets/img',
+                // 画像保存先が違う場合はパスを指定する。
+                // publicPath: `${assetPath}assets/img`,
               },
             },
           ],

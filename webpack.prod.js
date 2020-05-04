@@ -8,7 +8,7 @@ const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 const outputFile = '[name].[chunkhash]';
 const assetFile = '[name].[contenthash]';
 // 静的ファイルを保存する場所によって変える。インフラ担当者と要相談。
-const assetPath = '../';
+const assetPath = '/';
 
 module.exports = (env) => {
   // package.jsonのscriptで --env.envFile=で指定されたパスのenvFileを使用する。

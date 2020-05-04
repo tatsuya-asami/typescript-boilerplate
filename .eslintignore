@@ -1,2 +1,5 @@
 webpack.*.js
+*.html
+*.scss
+*.css
 dist/
