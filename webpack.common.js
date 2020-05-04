@@ -38,6 +38,8 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
         },
         {
           test: /\.(ts|js)$/,
+          // tsからjsの変換はbabel-loaderで行う
+          // 型チェックはForkTsCheckerWebpackPluginで行う
           use: 'babel-loader',
           exclude: /node_modules/,
         },
@@ -45,14 +47,26 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
           test: /\.s[ac]ss$/i,
           use: [
             // ここの順番は重要。下から順番に実行される
-            // cssファイルを作成する
+            // jsにバンドルせずcssファイルとして出力する
             MiniCssExtractPlugin.loader,
             // Translates CSS into CommonJS
             'css-loader',
-            // プレフィックスを自動でつけてくれる
+            // プレフィックスを自動で付与する
             'postcss-loader',
             // Compiles Sass to CSS
             'sass-loader',
+          ],
+        },
+        {
+          test: /\.css$/i,
+          use: [
+            // ここの順番は重要。下から順番に実行される
+            // jsにバンドルせずcssファイルとして出力する
+            MiniCssExtractPlugin.loader,
+            // Translates CSS into CommonJS
+            'css-loader',
+            // プレフィックスを自動で付与する
+            'postcss-loader',
           ],
         },
         {
