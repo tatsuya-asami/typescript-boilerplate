@@ -11,6 +11,10 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
       index: './src/pages/index.ts',
       'sample/index': './src/pages/sample/index.ts',
     },
+    output: {
+      filename: `./js/${outputFile}.js`,
+      path: path.resolve(__dirname, 'dist'),
+    },
     plugins: [
       // 型チェック
       new ForkTsCheckerWebpackPlugin(),
@@ -21,10 +25,6 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
       // .envファイルを使えるようにする
       new Dotenv({ path: envFilePath }),
     ],
-    output: {
-      filename: `./js/${outputFile}.js`,
-      path: path.resolve(__dirname, 'dist'),
-    },
     module: {
       rules: [
         {
