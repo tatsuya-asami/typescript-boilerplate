@@ -59,7 +59,9 @@ npm run build:staging
 npm run build:production
 ```
 
-読み込みむ env ファイルがそれぞれ異なる。それ以外の違いはない。
+- 読み込みむ env ファイルがそれぞれ異なる。それ以外の違いはない。
+- また、ビルド時に console を消去する設定を`webpack.prod.js`の optimizer で行なっている。
+- ビルド後のソースは`dist`ディレクトリに保存される。また、`live-server`で起動すればビルド後のソースの動作確認ができる。
 
 6. html ページを追加する。
 
