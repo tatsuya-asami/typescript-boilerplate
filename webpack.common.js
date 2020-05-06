@@ -75,7 +75,7 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
               options: {
                 name: `${assetFile}.[ext]`,
                 outputPath: 'assets/images/',
-                // 画像保存先がによってパスを変更する。
+                // 画像の保存先によってパスを変更する。
                 publicPath: `${assetPath}assets/images/`,
               },
             },
@@ -89,7 +89,7 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
               options: {
                 name: `${assetFile}.[ext]`,
                 outputPath: 'assets/fonts/',
-                // 画像保存先がによってパスを変更する。
+                // 画像の保存先によってパスを変更する。
                 publicPath: `${assetPath}assets/fonts/`,
               },
             },
