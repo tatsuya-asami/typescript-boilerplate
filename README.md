@@ -109,7 +109,7 @@ ESLintのエラーが出ている状態ではビルドに失敗する
 - eslintとstylelintを実行
 npm run format
 
-- eslintのを実行
+- eslintのみを実行
 npm run eslint
 
 - stylelintのみを実行
