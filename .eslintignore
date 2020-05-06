@@ -1,6 +1,4 @@
-webpack.*.js
-postcss.config.js
 *.html
-*.scss
-*.css
 dist/
+# ドットで始まるファイルも監視する。
+!.*.js
