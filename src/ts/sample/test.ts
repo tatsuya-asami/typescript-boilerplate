@@ -1,5 +1,5 @@
 export const testString = 'testString';
 
-export const testAlert = (value: string) => {
+export const testAlert = (value: string): void => {
   alert(value);
 };
