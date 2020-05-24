@@ -9,8 +9,8 @@ const assetPath = '/';
 
 module.exports = (env) => {
   // package.jsonのscriptで --env.envFile=で指定されたパスのenvFileを使用する。
-  // 指定されていない場合は.env.developmentを使用する
-  const envFilePath = env ? `./env/.env.${env.file}` : './env/.env.development';
+  // 指定されていない場合は.developmentを使用する
+  const envFilePath = env ? `./env/.${env.file}` : './env/.development';
 
   // webpack.common.jsのentryで追加したhtmlファイルを動的に生成する。
   const createHtmlPlugins = (entry) => {
