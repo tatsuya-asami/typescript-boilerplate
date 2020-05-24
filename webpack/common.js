@@ -8,12 +8,14 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
     entry: {
       // htmlが増える毎にここに追記
       // htmlページ名:そのhtmlの親となるtsファイル
-      index: './src/pages/index.ts',
-      'sample/index': './src/pages/sample/index.ts',
+      // index: './src/pages/index.ts',
+      // 'sample/index': './src/pages/sample/index.ts',
+      index: path.resolve(__dirname, '../src/pages/index.ts'),
+      'sample/index': path.resolve(__dirname, '../src/pages/sample/index.ts'),
     },
     output: {
       filename: `./js/${outputFile}.js`,
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, '../dist'),
     },
     plugins: [
       // 型チェック
@@ -104,9 +106,9 @@ module.exports = ({ outputFile, assetFile, envFilePath, assetPath }) => {
     resolve: {
       // 絶対パスでインポートできるようにする。
       alias: {
-        '@ts': path.resolve(__dirname, 'src/ts'),
-        '@scss': path.resolve(__dirname, 'src/scss'),
-        '@assets': path.resolve(__dirname, 'src/assets'),
+        '@ts': path.resolve(__dirname, '../src/ts'),
+        '@scss': path.resolve(__dirname, '../src/scss'),
+        '@assets': path.resolve(__dirname, '../src/assets'),
       },
       extensions: ['.ts', '.js'],
     },
