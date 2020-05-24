@@ -1,6 +1,6 @@
 const path = require('path');
 const webpackMerge = require('webpack-merge');
-const commonConfig = require('./webpack.common');
+const commonConfig = require('./common');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const outputFile = '[name]';
@@ -9,8 +9,8 @@ const assetPath = '/';
 
 module.exports = (env) => {
   // package.jsonのscriptで --env.envFile=で指定されたパスのenvFileを使用する。
-  // 指定されていない場合は.env.developmentを使用する
-  const envFilePath = env ? `./env/.env.${env.file}` : './env/.env.development';
+  // 指定されていない場合は.developmentを使用する
+  const envFilePath = env ? `./env/.${env.file}` : './env/.development';
 
   // webpack.common.jsのentryで追加したhtmlファイルを動的に生成する。
   const createHtmlPlugins = (entry) => {
@@ -18,7 +18,7 @@ module.exports = (env) => {
     Object.keys(entry).forEach((key) => {
       htmpPlugins.push(
         new HtmlWebpackPlugin({
-          template: path.resolve(__dirname, `./src/pages/${key}.html`),
+          template: path.resolve(__dirname, `../src/pages/${key}.html`),
           // 出力されるファイル名
           filename: `${key}.html`,
           // headにjsファイルを入れたい場合はheadを指定
