@@ -1,5 +1,5 @@
 const path = require('path');
-const webpackMerge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const commonConfig = require('./common');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -31,7 +31,7 @@ module.exports = (env) => {
     return htmpPlugins;
   };
 
-  return webpackMerge(
+  return merge(
     commonConfig({ outputFile, assetFile, envFilePath, assetPath }),
     {
       mode: 'development',
